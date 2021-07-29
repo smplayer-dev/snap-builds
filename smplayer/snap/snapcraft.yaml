@@ -21,7 +21,7 @@ layout:
     bind: $SNAP/etc/mpv
 
 apps:
-  smplayer-snap:
+  smplayer:
     command: usr/bin/smplayer
     command-chain:
       - bin/desktop-launch
