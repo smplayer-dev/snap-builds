@@ -1,0 +1,208 @@
+name: smplayer
+version: '21.1.0.9845'
+base: core20
+summary: Free Media Player with built-in codecs
+description: |
+  SMPlayer is a graphical user interface (GUI) for the award-winning mplayer
+  and also for mpv. But apart from providing access for the most common
+  and useful options of mplayer and mpv, SMPlayer adds other interesting features
+  like the possibility to play Youtube videos or search and download subtitles.
+  One of the main features is the ability to remember the state of a
+  played file, so when you play it later it will be resumed at the same point
+  and with the same settings.
+grade: stable
+architectures: [amd64]
+confinement: strict
+
+layout:
+  /usr/share/smplayer:
+    bind: $SNAP/usr/share/smplayer
+  /etc/mpv:
+    bind: $SNAP/etc/mpv
+
+apps:
+  smplayer-snap:
+    command: usr/bin/smplayer
+    command-chain:
+      - bin/desktop-launch
+      - bin/snapcraft-preload
+    desktop: usr/share/applications/smplayer.desktop
+    plugs:
+      - home
+      - network
+      - opengl
+      - removable-media
+      - optical-drive
+      - audio-playback
+      - pulseaudio
+      - alsa
+      - unity7
+      - x11
+      - wayland
+      - desktop
+      - network-manager
+      - network-control
+      - network-bind
+      - screen-inhibit-control
+    slots: [mpris]
+
+parts:
+  smplayer:
+    #source: ./snap/local/smplayer_21.1.0.9861_amd64.deb
+    #plugin: dump
+    #source-type: deb
+    #override-build: |
+    #  snapcraftctl build
+    #  #fix icon path
+    #  sed -i 's|Icon=smplayer|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/smplayer.png|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/smplayer.desktop
+
+    source: https://github.com/smplayer-dev/smplayer.git
+    plugin: nil
+    override-build: |
+       make PREFIX=/usr QMAKE_OPTS="DEFINES+=NO_DEBUG_ON_CONSOLE DEFINES+=USE_SHM DEFINES+=USE_GL_WINDOW"
+       make PREFIX=/usr DESTDIR=${SNAPCRAFT_PART_INSTALL} install
+       sed -i 's|Icon=smplayer|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/smplayer.png|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/smplayer.desktop
+    after:
+      - desktop-qt5
+      - snapcraft-preload
+      - mpv
+    build-packages:
+      - qtbase5-dev
+      - qt5-qmake
+      - qt5-default
+      - qttools5-dev-tools
+      - qtbase5-private-dev
+      - libqt5opengl5-dev
+    stage-packages:
+      - libqt5core5a
+      - libqt5dbus5
+      - libqt5gui5
+      - libqt5network5
+      - libqt5widgets5
+      - libqt5xml5
+      - libglu1-mesa
+      - freeglut3
+
+  mpv:
+    source: https://github.com/smplayer-dev/mpv-mod/releases/download/v0.33.1-58/mpv-mod_0.33.1-1.focal_amd64.deb
+    plugin: dump
+    source-type: deb
+    after: 
+      - desktop-qt5
+      - snapcraft-preload
+    stage-packages:
+      - libarchive13
+      - libasound2
+      - libass9
+      - libasyncns0
+      - libbluray2
+      - libcaca0
+      - libcdio-cdda2
+      - libcdio-paranoia2
+      - libcdio18
+      - libdrm2
+      - libdvdnav4
+      - libdvdread7
+      - libegl1
+      - libfftw3-double3
+      - libflac8
+      - libfontconfig1
+      - libfreetype6
+      - libfribidi0
+      - libgbm1
+      - libgl1
+      - libglvnd0
+      - libglx0
+      - libgraphite2-3
+      - libharfbuzz0b
+      - libicu66
+      - libjack-jackd2-0
+      - libjpeg-turbo8
+      - liblcms2-2
+      - liblua5.2-0
+      - libogg0
+      - libopenal1
+      - libpng16-16
+      - libpulse0
+      - librubberband2
+      - libsamplerate0
+      - libsdl2-2.0-0
+      - libslang2
+      - libsndfile1
+      - libsndio7.0
+      - libuchardet0
+      - libva-drm2
+      - libva-x11-2
+      - libva2
+      - libvdpau1
+      - libvorbis0a
+      - libvorbisenc2
+      - libwayland-client0
+      - libwayland-cursor0
+      - libwayland-egl1
+      - libwayland-server0
+      - libx11-6
+      - libxau6
+      - libxcb1
+      - libxcursor1
+      - libxdmcp6
+      - libxext6
+      - libxfixes3
+      - libxi6
+      - libxinerama1
+      - libxkbcommon0
+      - libxml2
+      - libxrandr2
+      - libxrender1
+      - libxss1
+      - libxv1
+      - libxxf86vm1
+
+      - libglu1-mesa
+
+      - libavcodec58
+      - libavdevice58
+      - libavfilter7
+      - libavformat58
+      - libavutil56
+      - libswresample3
+      - libswscale5
+
+      - freeglut3
+      - libopus0
+      - libcairo2
+      - libpixman-1-0
+
+  desktop-qt5:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-commit: c12ad1891667b49b8401e606341ad7ba7ba6a69e
+    source-subdir: qt/
+    plugin: make
+    make-parameters: ["FLAVOR=qt5"]
+    build-packages:
+      - qtbase5-dev
+      - dpkg-dev
+    stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - shared-mime-info
+      - libqt5gui5
+      - libgdk-pixbuf2.0-0
+      - libqt5svg5
+      - locales-all
+      - libgtk2.0-0
+
+  snapcraft-preload:
+    source: https://github.com/sergiusens/snapcraft-preload.git
+    plugin: cmake
+    build-packages:
+      - on amd64:
+        - gcc-multilib
+        - g++-multilib
+    stage-packages:
+      - lib32stdc++6
+    organize:
+      usr/local/bin/: bin/
+      usr/local/lib/: lib/
