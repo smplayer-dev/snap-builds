@@ -1,0 +1,251 @@
+base: core20
+name: mpv-mod
+version: "0.33.1"
+summary: a free, open source, and cross-platform media player.
+icon: snap/gui/mpv.svg
+description: |
+  mpv is a media player based on MPlayer and mplayer2.
+  It supports a wide variety of video file formats,
+  audio and video codecs, and subtitle types.
+
+  Install with:
+  sudo snap install mpv-mod
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: amd64
+    run-on: amd64
+
+apps:
+  mpv:
+    command: usr/bin/mpv
+    command-chain:
+      - bin/desktop-launch
+      - bin/snapcraft-preload
+    plugs:
+      - home
+      - network
+      - opengl
+      - removable-media
+      - optical-drive
+      - audio-playback
+      - pulseaudio
+      - alsa
+      - unity7
+      - x11
+      - wayland
+      - desktop
+      - network-manager
+      - network-control
+      - network-bind
+      - screen-inhibit-control
+
+parts:
+  mpv:
+    source: https://github.com/smplayer-dev/mpv-mod.git
+    source-depth: 1
+    plugin: nil
+    override-build: |
+      ./bootstrap.py
+      ./waf configure --prefix=/usr --enable-libarchive --enable-gl-x11
+      ./waf build
+      ./waf install --destdir=${SNAPCRAFT_PART_INSTALL}
+    build-packages:
+      - build-essential
+      - debhelper
+      - autoconf
+      - automake
+      - gcc
+      - ladspa-sdk
+      - libarchive-dev
+      - libasound2-dev
+      - libass-dev
+      - libavcodec-dev
+      - libavdevice-dev
+      - libavfilter-dev
+      - libavformat-dev
+      - libavresample-dev
+      - libavutil-dev
+      - libbluray-dev
+      - libbrotli-dev
+      - libbs2b-dev
+      - libcaca-dev
+      - libcdio-paranoia-dev
+      - libdrm-dev
+      - libdvdnav-dev
+      - libdvdread-dev
+      - libegl1-mesa-dev
+      - libenca-dev
+      - libfontconfig1-dev
+      - libfreetype6-dev
+      - libfribidi-dev
+      - libgbm-dev
+      - libgl1-mesa-dev
+      - libgme-dev
+      - libgnutls28-dev
+      - libgsm1-dev
+      - libguess-dev
+      - libharfbuzz-dev
+      - libjack-jackd2-dev
+      - libjpeg-dev
+      - liblcms2-dev
+      - liblircclient-dev
+      - liblua5.2-dev
+      - libmodplug-dev
+      - libmp3lame-dev
+      - libopenal-dev
+      - libopencore-amrnb-dev
+      - libopencore-amrwb-dev
+      - libopus-dev
+      - libpulse-dev
+      - librtmp-dev
+      - librubberband-dev
+      - libsdl2-dev
+      - libsndio-dev
+      - libsoxr-dev
+      - libspeex-dev
+      - libssh-dev
+      - libswscale-dev
+      - libtool
+      - libuchardet-dev
+      - libv4l-dev
+      - libva-dev
+      - libvdpau-dev
+      - libvo-amrwbenc-dev
+      - libvorbis-dev
+      - libvpx-dev
+      - libwayland-dev
+      - libx11-dev
+      - libx264-dev
+      - libxext-dev
+      - libxinerama-dev
+      - libxkbcommon-dev
+      - libxrandr-dev
+      - libxss-dev
+      - libxv-dev
+      - libxvidcore-dev
+      # - pkg-config
+      - python3
+      - python3-docutils
+      - x11proto-core-dev
+      - yasm
+      - zlib1g-dev
+
+    stage-packages:
+      #- i965-va-driver
+      #- va-driver-all
+      #- vdpau-driver-all
+      #- mesa-va-drivers
+      #- vdpauinfo
+      #- vainfo
+
+      - libarchive13
+      - libasound2
+      - libass9
+      - libasyncns0
+      - libbluray2
+      - libcaca0
+      - libcdio-cdda2
+      - libcdio-paranoia2
+      - libcdio18
+      - libdrm2
+      - libdvdnav4
+      - libdvdread7
+      - libegl1
+      - libfftw3-double3
+      - libflac8
+      - libfontconfig1
+      - libfreetype6
+      - libfribidi0
+      - libgbm1
+      - libgl1
+      - libglvnd0
+      - libglx0
+      - libgraphite2-3
+      - libharfbuzz0b
+      - libicu66
+      - libjack-jackd2-0
+      - libjpeg-turbo8
+      - liblcms2-2
+      - liblua5.2-0
+      - libogg0
+      - libopenal1
+      - libpng16-16
+      - libpulse0
+      - librubberband2
+      - libsamplerate0
+      - libsdl2-2.0-0
+      - libslang2
+      - libsndfile1
+      - libsndio7.0
+      - libuchardet0
+      - libva-drm2
+      - libva-x11-2
+      - libva2
+      - libvdpau1
+      - libvorbis0a
+      - libvorbisenc2
+      - libwayland-client0
+      - libwayland-cursor0
+      - libwayland-egl1
+      - libwayland-server0
+      - libx11-6
+      - libxau6
+      - libxcb1
+      - libxcursor1
+      - libxdmcp6
+      - libxext6
+      - libxfixes3
+      - libxi6
+      - libxinerama1
+      - libxkbcommon0
+      - libxml2
+      - libxrandr2
+      - libxrender1
+      - libxss1
+      - libxv1
+      - libxxf86vm1
+
+      - libglu1-mesa
+
+      - libavcodec58
+      - libavdevice58
+      - libavfilter7
+      - libavformat58
+      - libavutil56
+      - libswresample3
+      - libswscale5
+
+      - freeglut3
+      - libopus0
+      - libcairo2
+      - libpixman-1-0
+
+    after:
+       - desktop-glib-only
+       - snapcraft-preload
+
+  desktop-glib-only:
+    plugin: make
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-subdir: glib-only
+    build-packages:
+      - libglib2.0-dev
+    stage-packages:
+      - libglib2.0-bin
+      - shared-mime-info
+
+  snapcraft-preload:
+    source: https://github.com/sergiusens/snapcraft-preload.git
+    plugin: cmake
+    build-packages:
+      - on amd64:
+        - gcc-multilib
+        - g++-multilib
+    stage-packages:
+      - lib32stdc++6
+    organize:
+      usr/local/bin/: bin/
+      usr/local/lib/: lib/
