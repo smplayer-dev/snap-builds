@@ -18,6 +18,10 @@ architectures:
   - build-on: amd64
     run-on: amd64
 
+layout:
+  /etc/mpv:
+    bind: $SNAP/etc/mpv
+
 apps:
   mpv:
     command: usr/bin/mpv
