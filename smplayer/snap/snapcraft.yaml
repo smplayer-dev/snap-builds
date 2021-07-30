@@ -19,6 +19,8 @@ layout:
     bind: $SNAP/usr/share/smplayer
   /etc/mpv:
     bind: $SNAP/etc/mpv
+  /etc/mplayer:
+    bind: $SNAP/etc/mplayer
 
 apps:
   smplayer:
