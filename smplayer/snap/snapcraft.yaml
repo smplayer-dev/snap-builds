@@ -66,7 +66,6 @@ parts:
     after:
       - desktop-qt5
       - snapcraft-preload
-      - mpv
     build-packages:
       - qtbase5-dev
       - qt5-qmake
@@ -88,7 +87,7 @@ parts:
     source: https://github.com/smplayer-dev/mpv-mod/releases/download/v0.33.1-58/mpv-mod_0.33.1-1.focal_amd64.deb
     plugin: dump
     source-type: deb
-    after: 
+    after:
       - desktop-qt5
       - snapcraft-preload
     stage-packages:
@@ -178,7 +177,7 @@ parts:
     source: https://github.com/smplayer-dev/mplayer-mod/releases/download/v1.4-83/mplayer-mod_1.4-1.focal_amd64.deb
     plugin: dump
     source-type: deb
-    after: 
+    after:
       - desktop-qt5
       - snapcraft-preload
       - mpv
