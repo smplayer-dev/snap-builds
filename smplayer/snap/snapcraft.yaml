@@ -182,6 +182,24 @@ parts:
       - desktop-qt5
       - snapcraft-preload
       - mpv
+    stage-packages:
+      - libsdl1.2debian
+      - libxvmc1
+      - libxxf86dga1
+      - liba52-0.7.4
+      - libaa1
+      - libaudio2
+      - libdca0
+      - libdirectfb-1.7-7
+      - libdv4
+      - libenca0
+      - libfaad2
+      - libgif7
+      - liblirc-client0
+      - libmad0
+      - libmng2
+      - libmpeg2-4
+      - libvorbisidec1
 
   smplayer-themes:
     source: https://github.com/smplayer-dev/smplayer-themes/releases/download/v20.11.0/smplayer-themes_20.11.0.focal_all.deb
