@@ -1,18 +1,9 @@
 name: smplayer
-version: '21.1.0.9845'
 base: core20
-summary: Free Media Player with built-in codecs
-description: |
-  SMPlayer is a graphical user interface (GUI) for the award-winning mplayer
-  and also for mpv. But apart from providing access for the most common
-  and useful options of mplayer and mpv, SMPlayer adds other interesting features
-  like the possibility to play Youtube videos or search and download subtitles.
-  One of the main features is the ability to remember the state of a
-  played file, so when you play it later it will be resumed at the same point
-  and with the same settings.
 grade: stable
 architectures: [amd64]
 confinement: strict
+adopt-info: smplayer
 
 layout:
   /usr/share/smplayer:
@@ -70,6 +61,7 @@ parts:
        make PREFIX=/usr QMAKE_OPTS="DEFINES+=NO_DEBUG_ON_CONSOLE DEFINES+=USE_SHM DEFINES+=USE_GL_WINDOW DEFINES+=USE_SMTUBE_LIB"
        make PREFIX=/usr DESTDIR=${SNAPCRAFT_PART_INSTALL} install
        sed -i 's|Icon=smplayer|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/smplayer.png|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/smplayer.desktop
+    parse-info: [usr/share/metainfo/smplayer.appdata.xml]
     after:
       - desktop-qt5
       - snapcraft-preload
@@ -92,7 +84,14 @@ parts:
       - libglu1-mesa
       - freeglut3
       - libqt5webkit5
-      - python-is-python3
+
+  fix-python:
+    plugin: nil
+    override-build: |
+       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
+       ln -sf /usr/bin/python3 $SNAPCRAFT_PART_INSTALL/usr/bin/python
+    prime:
+       - usr/bin/python
 
   mpv:
     source: https://github.com/smplayer-dev/mpv-mod/releases/download/v0.33.1-58/mpv-mod_0.33.1-1.focal_amd64.deb
