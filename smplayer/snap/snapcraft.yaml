@@ -63,8 +63,9 @@ parts:
     plugin: nil
     override-build: |
        wget https://github.com/smplayer-dev/smtube/releases/download/v21.7.0/smtube-21.7.0.tar.bz2 -O smtube.tar.bz2
-       tar -xvf smtube.tar.bz2 smtube-21.7.0/src --strip-components=1 --transform s/src/smtube/
+       tar -xf smtube.tar.bz2 smtube-21.7.0/src --strip-components=1 --transform s/src/smtube/
        cd smtube && lrelease smtube.pro && qmake DEFINES+="SMTUBE_LIB" && make
+       cd ..
        cp smtube/translations/*.qm src/translations/
        make PREFIX=/usr QMAKE_OPTS="DEFINES+=NO_DEBUG_ON_CONSOLE DEFINES+=USE_SHM DEFINES+=USE_GL_WINDOW DEFINES+=USE_SMTUBE_LIB"
        make PREFIX=/usr DESTDIR=${SNAPCRAFT_PART_INSTALL} install
