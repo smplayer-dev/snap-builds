@@ -92,6 +92,7 @@ parts:
       - libglu1-mesa
       - freeglut3
       - libqt5webkit5
+      - python-is-python3
 
   mpv:
     source: https://github.com/smplayer-dev/mpv-mod/releases/download/v0.33.1-58/mpv-mod_0.33.1-1.focal_amd64.deb
