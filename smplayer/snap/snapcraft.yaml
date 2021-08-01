@@ -21,23 +21,27 @@ apps:
       - bin/snapcraft-preload
     desktop: usr/share/applications/smplayer.desktop
     plugs:
-      - home
-      - network
-      - opengl
-      - removable-media
-      - optical-drive
-      - audio-playback
-      - pulseaudio
       - alsa
-      - jack1
-      - unity7
-      - x11
-      - wayland
+      - audio-playback
       - desktop
-      - network-manager
-      - network-control
+      - home
+      - jack1
+      - network
       - network-bind
+      - network-control
+      - network-manager
+      - opengl
+      - optical-drive
+      - pulseaudio
+      - removable-media
       - screen-inhibit-control
+      - unity7
+      - wayland
+      - x11
+      - mount-observe
+      - desktop-legacy
+      - dvb
+      - avahi-control
     slots: [mpris]
 
 parts:
