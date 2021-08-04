@@ -19,6 +19,8 @@ apps:
     command-chain:
       - bin/desktop-launch
       - bin/snapcraft-preload
+    environment:
+        DISABLE_WAYLAND: 1
     desktop: usr/share/applications/smplayer.desktop
     plugs:
       - alsa
@@ -88,6 +90,7 @@ parts:
       - libglu1-mesa
       - freeglut3
       - libqt5webkit5
+      - qtwayland5
 
   fix-python:
     plugin: nil
