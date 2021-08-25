@@ -16,13 +16,14 @@ jobs:
           path: smplayer
   
       - name: Create artifact
-        if: ${{false}}
+        #if: ${{false}}
         uses: actions/upload-artifact@v2
         with:
           name: smplayer-snap
           path: ${{ steps.snapcraft.outputs.snap }}
 
       - name: Publish
+        if: ${{false}}
         uses: snapcore/action-publish@v1
         with:
           store_login: ${{ secrets.STORE_LOGIN }}
