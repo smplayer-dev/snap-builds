@@ -105,6 +105,7 @@ parts:
       - freeglut3
       - libqt5webkit5
       - qtwayland5
+      - qt5-gtk-platformtheme # for theming, font settings, cursor and to use gtk3 file chooser
 
   fix-python:
     plugin: nil
