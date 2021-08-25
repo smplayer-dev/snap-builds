@@ -36,6 +36,7 @@ apps:
       - bin/snapcraft-preload
     environment:
         DISABLE_WAYLAND: 1
+        QT_QPA_PLATFORMTHEME: gtk3
     desktop: usr/share/applications/smplayer.desktop
     plugs:
       - alsa
@@ -58,6 +59,7 @@ apps:
       - mount-observe
       - desktop-legacy
       - dvb
+      - gsettings
     slots: [mpris]
 
 parts:
