@@ -13,20 +13,6 @@ layout:
   /etc/mplayer:
     bind: $SNAP/etc/mplayer
 
-plugs: # plugs for theming, font settings, cursor and to use gtk3 file chooser
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/data-dir/themes
-    default-provider: gtk-common-themes:gtk-3-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes:icon-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/data-dir/sounds
-    default-provider: gtk-common-themes:sounds-themes
-
 apps:
   smplayer:
     common-id: info.smplayer.SMPlayer
@@ -36,7 +22,6 @@ apps:
       - bin/snapcraft-preload
     environment:
         DISABLE_WAYLAND: 1
-        QT_QPA_PLATFORMTHEME: gtk3
     desktop: usr/share/applications/smplayer.desktop
     plugs:
       - alsa
@@ -59,7 +44,6 @@ apps:
       - mount-observe
       - desktop-legacy
       - dvb
-      - gsettings
     slots: [mpris]
 
 parts:
@@ -107,7 +91,6 @@ parts:
       - freeglut3
       - libqt5webkit5
       - qtwayland5
-      - qt5-gtk-platformtheme # for theming, font settings, cursor and to use gtk3 file chooser
 
   fix-python:
     plugin: nil
@@ -264,7 +247,6 @@ parts:
       - libqt5svg5
       - locales-all
       - libgtk2.0-0
-      - try: [appmenu-qt5] # not available on core18
 
   snapcraft-preload:
     source: https://github.com/sergiusens/snapcraft-preload.git
