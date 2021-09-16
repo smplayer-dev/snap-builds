@@ -91,6 +91,7 @@ parts:
       - freeglut3
       - libqt5webkit5
       - qtwayland5
+      - qttranslations5-l10n
 
   fix-python:
     plugin: nil
