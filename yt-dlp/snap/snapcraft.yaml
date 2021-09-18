@@ -28,6 +28,10 @@ parts:
       - wget
     stage-packages:
       - python3
-    #  - ffmpeg
-    #  - freeglut3
-    #  - libglu1-mesa
+
+  #ffmpeg:
+  #  plugin: nil
+  #  stage-packages:
+  #    - ffmpeg
+  #    - freeglut3
+  #    - libglu1-mesa
