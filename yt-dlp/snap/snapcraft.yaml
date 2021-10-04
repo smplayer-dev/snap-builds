@@ -1,5 +1,4 @@
 name: yt-dlp
-version: 2021.09.02
 summary: A youtube-dl fork with additional features and fixes
 description: |
   yt-dlp is a youtube-dl fork based on the now inactive youtube-dlc. The
@@ -8,6 +7,7 @@ description: |
 base: core20
 confinement: strict
 grade: stable
+adopt-info: yt-dlp
 
 apps:
   yt-dlp:
@@ -21,8 +21,11 @@ apps:
 parts:
   yt-dlp:
     plugin: nil
+    override-pull: |
+        wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
+        chmod 755 yt-dlp
+        snapcraftctl set-version "`./yt-dlp --version`"
     override-build: |
-        wget https://github.com/yt-dlp/yt-dlp/releases/download/2021.09.02/yt-dlp
         install -m 755 yt-dlp ${SNAPCRAFT_PART_INSTALL}/usr/bin/
     build-packages:
       - wget
