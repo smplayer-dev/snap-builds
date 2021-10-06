@@ -15,10 +15,16 @@ jobs:
         uses: snapcore/action-build@v1
         with:
           path: yt-dlp
-  
+
+      - name: Get name
+        run: |
+            cd yt-dlp
+            filename=`ls *.snap`
+            echo "PACKAGEFILENAME=$filename" >> $GITHUB_ENV
+
       - name: Create artifact
         if: github.event_name != 'release'
         uses: actions/upload-artifact@v2
         with:
-          name: yt-dlp-snap
+          name: ${{ env.PACKAGEFILENAME }}
           path: ${{ steps.snapcraft.outputs.snap }}
