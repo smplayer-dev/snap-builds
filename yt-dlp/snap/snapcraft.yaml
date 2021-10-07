@@ -21,11 +21,10 @@ apps:
 parts:
   yt-dlp:
     plugin: nil
-    override-pull: |
+    override-build: |
         wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
         chmod 755 yt-dlp
         snapcraftctl set-version "`./yt-dlp --version`"
-    override-build: |
         install -m 755 yt-dlp ${SNAPCRAFT_PART_INSTALL}/usr/bin/
     build-packages:
       - wget
