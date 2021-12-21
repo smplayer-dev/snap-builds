@@ -94,6 +94,8 @@ parts:
       - libqt5webkit5
       - qtwayland5
       - qttranslations5-l10n
+      - pulseaudio-utils
+      - x11-utils
 
   fix-python:
     plugin: nil
