@@ -106,7 +106,8 @@ parts:
        - usr/bin/python
 
   mpv:
-    source: https://github.com/smplayer-dev/mpv-mod/releases/download/v0.33.1-65/mpv-mod_0.33.1-1.focal_amd64.deb
+    #source: https://github.com/smplayer-dev/mpv-mod/releases/download/v0.33.1-65/mpv-mod_0.33.1-1.focal_amd64.deb
+    source: https://github.com/smplayer-dev/mpv/releases/download/v0.34.0-mod/mpv-mod_0.34.0-1.focal_amd64.deb
     plugin: dump
     source-type: deb
     after:
