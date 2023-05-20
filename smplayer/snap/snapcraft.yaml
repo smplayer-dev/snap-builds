@@ -181,6 +181,7 @@ parts:
       - libxss1
       - libxv1
       - libxxf86vm1
+      - libxpresent1
 
       - libglu1-mesa
 
