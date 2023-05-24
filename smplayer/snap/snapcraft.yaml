@@ -225,6 +225,7 @@ parts:
       - libmng2
       - libmpeg2-4
       - libvorbisidec1
+      - libsmbclient
 
   smplayer-themes:
     source: https://github.com/smplayer-dev/smplayer-themes/releases/download/v20.11.0/smplayer-themes_20.11.0.focal_all.deb
