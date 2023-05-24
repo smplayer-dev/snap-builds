@@ -199,8 +199,8 @@ parts:
       - libpixman-1-0
 
   mplayer:
-    #source: https://github.com/smplayer-dev/mplayer-mod/releases/download/v1.4-84/mplayer-mod_1.4-1.focal_amd64.deb
-    source: https://github.com/smplayer-dev/mplayer-mod/releases/download/v1.5-106/mplayer-mod_1.5-1.focal_amd64.deb
+    source: https://github.com/smplayer-dev/mplayer-mod/releases/download/v1.4-84/mplayer-mod_1.4-1.focal_amd64.deb
+    #source: https://github.com/smplayer-dev/mplayer-mod/releases/download/v1.5-106/mplayer-mod_1.5-1.focal_amd64.deb
     plugin: dump
     source-type: deb
     after:
@@ -225,8 +225,8 @@ parts:
       - libmng2
       - libmpeg2-4
       - libvorbisidec1
-      - libsmbclient
-      - samba-libs
+      #- libsmbclient
+      #- samba-libs
 
   smplayer-themes:
     source: https://github.com/smplayer-dev/smplayer-themes/releases/download/v20.11.0/smplayer-themes_20.11.0.focal_all.deb
