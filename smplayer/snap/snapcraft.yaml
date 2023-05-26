@@ -200,7 +200,7 @@ parts:
 
   mplayer:
     #source: https://github.com/smplayer-dev/mplayer-mod/releases/download/v1.4-84/mplayer-mod_1.4-1.focal_amd64.deb
-    source: https://github.com/smplayer-dev/mplayer-mod/releases/download/v1.5-106/mplayer-mod_1.5-1.focal_amd64.deb
+    source: https://github.com/smplayer-dev/mplayer-mod/releases/download/v1.5-110/mplayer-mod_1.5-1.focal_amd64.deb
     plugin: dump
     source-type: deb
     after:
