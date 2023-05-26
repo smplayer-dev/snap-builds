@@ -225,8 +225,8 @@ parts:
       - libmng2
       - libmpeg2-4
       - libvorbisidec1
-      - libsmbclient
-      - samba-libs
+      #- libsmbclient
+      #- samba-libs
       - libcrystalhd3
 
   smplayer-themes:
