@@ -15,6 +15,10 @@ layout:
   /etc/mplayer:
     bind: $SNAP/etc/mplayer
 
+plugs:
+  shared-memory:
+    private: true
+
 apps:
   smplayer:
     common-id: info.smplayer.SMPlayer
