@@ -65,12 +65,13 @@ parts:
     source: https://github.com/smplayer-dev/smplayer.git
     plugin: nil
     override-build: |
-       wget https://github.com/smplayer-dev/smtube/releases/download/v21.10.0/smtube-21.10.0.tar.bz2 -O smtube.tar.bz2
-       tar -xf smtube.tar.bz2 smtube-21.10.0/src --strip-components=1 --transform s/src/smtube/
-       cd smtube && lrelease smtube.pro && qmake DEFINES+="SMTUBE_LIB" && make
-       cd ..
-       cp smtube/translations/*.qm src/translations/
-       make -j$SNAPCRAFT_PARALLEL_BUILD_COUNT PREFIX=/usr QMAKE_OPTS="DEFINES+=USE_SHM DEFINES+=USE_GL_WINDOW DEFINES+=USE_SMTUBE_LIB"
+       #wget https://github.com/smplayer-dev/smtube/releases/download/v21.10.0/smtube-21.10.0.tar.bz2 -O smtube.tar.bz2
+       #tar -xf smtube.tar.bz2 smtube-21.10.0/src --strip-components=1 --transform s/src/smtube/
+       #cd smtube && lrelease smtube.pro && qmake DEFINES+="SMTUBE_LIB" && make
+       #cd ..
+       #cp smtube/translations/*.qm src/translations/
+       #make -j$SNAPCRAFT_PARALLEL_BUILD_COUNT PREFIX=/usr QMAKE_OPTS="DEFINES+=USE_SHM DEFINES+=USE_GL_WINDOW DEFINES+=USE_SMTUBE_LIB"
+       make -j$SNAPCRAFT_PARALLEL_BUILD_COUNT PREFIX=/usr QMAKE_OPTS="DEFINES+=USE_SHM DEFINES+=USE_GL_WINDOW"
        make PREFIX=/usr DESTDIR=${SNAPCRAFT_PART_INSTALL} install
        sed -i 's|Icon=smplayer|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/smplayer.png|g' $SNAPCRAFT_PART_INSTALL/usr/share/applications/smplayer.desktop
     parse-info: [usr/share/metainfo/smplayer.appdata.xml]
